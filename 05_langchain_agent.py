@@ -96,7 +96,7 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # 최종적으로 agent_executor를 실행하여 결과를 출력한다.
 
-# agent_result = agent_executor.invoke({"input": "rag 고급 기법을 찾아서 알려줘"})
-agent_result = agent_executor.invoke({"input": "오늘자 마이크로소프트 주가와 소식을 알려줘"})
+agent_result = agent_executor.invoke({"input": "rag 와 프롬프트 엔지니어링의 차이 설명해줘"})
+# agent_result = agent_executor.invoke({"input": "오늘자 카카오 주가와 소식을 알려줘"})
 
 print(agent_result)

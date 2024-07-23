@@ -36,7 +36,7 @@ def create_faiss_index():
     db.save_local(restaurant_faiss)
     print("Faiss Index created and saved")
 
-
+# 생성한 faiss 를 로드하는 과정
 def load_faiss_index():
     embeddings = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
     load_db = FAISS.load_local(
@@ -47,6 +47,7 @@ def load_faiss_index():
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
+## \n\n 가 앞에 붙어있으면 자르고 이걸 이어붙여라는 뜻
 
 
 def answer_question(db, query):

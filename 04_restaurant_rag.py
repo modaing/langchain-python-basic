@@ -6,20 +6,27 @@ import os
 from dotenv import load_dotenv
 import asyncio
 load_dotenv()
+### RAG 단계 ###
+# 1. load
+# 2. split
+# 3. enbed
+# 4. store
 
 # pip install faiss-cpu or faiss-gpu
 # 현재 파이썬 스크립트 실행 위치 반환
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# 현재 파이썬 스크립트 실행 같은 위치에 있는 "restaurant-faiss" 폴더 경로
-restaurant_faiss = os.path.join(current_dir, "restaurant-faiss")
+# 현재 파이썬 스크립트 실행 같은 위치에 있는 "restaurant-faiss" 폴더 경로 (절대 경로)
+restaurant_faiss = os.path.join(current_dir, "restaurant-faiss")    # 이 폴더 경로에 "restaurant-faiss" 파일을 가져와
 
 # TextLoader 클래스를 사용하여 "restaurant.txt"라는 파일에서 텍스트를 로드합니다.
 loader = TextLoader(f'{current_dir}/restaurant.txt')
 
 # 파일의 내용을 document 객체로 로드합니다.
+# RAG 1단계 load
 documents = loader.load()
 
 # 텍스트를 300자 단위로 나누고, 연속된 청크 사이에 50자의 겹침을 두어 텍스트를 분할하는 text splitter 객체를 생성합니다.
+# 문자를 자를 가위인 CharacterTextSplitter로 자름. RAG 2단계
 text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=50)
 
 # 로드된 문서를 지정된 크기와 겹침에 따라 더 작은 청크로 분할합니다.
